@@ -1,0 +1,21 @@
+---
+version: '3'
+services:
+  web:
+    image: poonamag/web:latest
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8082:8082"
+    networks:
+      - webnet
+  nginx:
+    image: poonamag/nginx:latest
+    ports:
+      - "8083:8083"
+    networks:
+      - webnet
+networks:
+  webnet:
